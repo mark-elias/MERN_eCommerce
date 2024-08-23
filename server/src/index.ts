@@ -11,7 +11,7 @@ app.use("/", home);
 const userRouter = require("./routes/user");
 app.use("/user", userRouter);
 
-const uri = "mongodb+srv://mark7elias:AXw7eWAPd@cluster0.39b8e.mongodb.net/";
+const uri = "mongodb+srv://mark7elias:AXw7eWAPd@cluster0.39b8e.mongodb.net/ecommerce";
 
 //make connection to our mongoose database
 mongoose

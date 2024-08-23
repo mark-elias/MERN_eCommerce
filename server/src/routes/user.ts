@@ -11,16 +11,26 @@ router.get("/", (req, res) => {
 router.post("/register", async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
-  const user = await UserModel.findOne({ username: username });
+  try {
+    const user = await UserModel.findOne({ username: username });
 
-  if (user) {
-    res.status(400).json({ type: userErrors.USERNAME_ALREADY_EXISTS });
-    return;
+    if (user) {
+      res.status(400).json({ type: userErrors.USERNAME_ALREADY_EXISTS });
+      return;
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new UserModel({
+      username: username,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+    //might need to change this to res.json()
+    res.send("user registered succesfully");
+  } catch (err) {
+    res.status(500).json({ type: err });
   }
-
-//   const hashedPassword = await bcrypt.hash(password, 10);
-//   console.log(hashedPassword);
-  res.send("hiii");
 });
 //==================================
 module.exports = router;
