@@ -11,13 +11,14 @@ app.use("/", home);
 const userRouter = require("./routes/user");
 app.use("/user", userRouter);
 
-const uri = "mongodb+srv://mark7elias:AXw7eWAPd@cluster0.39b8e.mongodb.net/ecommerce";
+const uri =
+  "mongodb+srv://mark7elias:AXw7eWAPd@cluster0.39b8e.mongodb.net/ecommerce";
 
 //make connection to our mongoose database
 mongoose
   .connect(uri)
   .then(() => {
-    console.log("Connected to MongoDB");
+    console.log("🌱 Connected to MongoDB");
   })
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
