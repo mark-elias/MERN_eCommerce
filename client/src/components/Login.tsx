@@ -58,7 +58,6 @@ function Login() {
           <button
             type="submit"
             className="custom-button-primary disabled:opacity-40"
-            disabled={!isValid}
           >
             Login
           </button>

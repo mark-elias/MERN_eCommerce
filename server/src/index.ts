@@ -11,6 +11,15 @@ app.use("/", home);
 const userRouter = require("./routes/user");
 app.use("/user", userRouter);
 
+// connect to COMPASS 🧭
+// "mongodb+srv://mark7elias:AXw7eWAPd@cluster0.39b8e.mongodb.net/ecommerce";
+// connect to ATLAS 🌎
+// "mongodb+srv://mark7elias:<db_password>@cluster0.39b8e.mongodb.net/ecommerce";
+// ❌ make sure to add name of database to end of URI
+// ecommerce
+// 🔐
+// AXw7eWAPd
+
 const uri =
   "mongodb+srv://mark7elias:AXw7eWAPd@cluster0.39b8e.mongodb.net/ecommerce";
 

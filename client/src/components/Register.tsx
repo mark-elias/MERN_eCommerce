@@ -1,7 +1,8 @@
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import axios from "axios";
+import { userErrors } from "../errors";
 // Validation
 const schema = z.object({
   username: z.string().min(3),
@@ -15,11 +16,32 @@ function Register() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
+
   // submitting the form
-  function onSubmit(data: FieldValues) {
-    console.log(data);
+  function onSubmit(data: FormData) {
+    console.log(data.username, data.password);
+
+    axios
+      .post("http://localhost:3001/user/register", {
+        username: data.username,
+        password: data.password,
+      })
+      .then((response) => {
+        console.log("User registered successfully:", response.data);
+        alert("Registration Completed!");
+        // Handle success
+      })
+      .catch((error) => {
+        if (error.response.data.type === userErrors.USERNAME_ALREADY_EXISTS) {
+          alert(userErrors.USERNAME_ALREADY_EXISTS);
+          return;
+        } else {
+          alert("Server Error");
+          return;
+        }
+      });
   }
 
   return (
@@ -60,7 +82,6 @@ function Register() {
             <button
               type="submit"
               className="custom-button-primary disabled:opacity-40"
-              disabled={!isValid}
             >
               Register
             </button>
