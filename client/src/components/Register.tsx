@@ -1,11 +1,15 @@
+import { useForm } from "react-hook-form";
+
 function Register() {
+  //useForm is a hook
+  const { register } = useForm();
+
   return (
     <>
-      <section className="custom-section">
         <div className="form-container">
           <h1 className="text-center text-2xl">Register</h1>
           <p className="text-center">Set a username and password to register</p>
-          <form className="custom-form">
+          <form className="form-input-section">
             <div>
               <label htmlFor="username" className="block">
                 Username
@@ -25,11 +29,6 @@ function Register() {
             </div>
           </form>
         </div>
-        <div className="form-container">
-          <h1 className="text-center text-2xl">Register</h1>
-          <p className="text-center">Set a username and password to register</p>
-        </div>
-      </section>
     </>
   );
 }

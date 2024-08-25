@@ -3,18 +3,24 @@
 @tailwind utilities;
 
 @layer components{
-    .custom-section{
-        @apply flex justify-center items-center py-10
+    /* General Section */
+    .section{
+        @apply p-10
+    }
+    /* Form Styling */
+    .form-section{
+        @apply flex flex-col justify-center items-center gap-10
     }
     .form-container{
-        @apply font-medium shadow-md rounded p-5
+        @apply font-medium shadow-lg rounded p-5 w-[375px]
     }
-    .custom-form{
+    .form-input-section{
         @apply mt-3 flex flex-col gap-5
     }
     .custom-input{
         @apply border-slate-200 border-2 rounded w-full
     }
+    /* Button Styling */
     .custom-button-primary{
         @apply bg-customPink rounded px-2 py-1
     }
