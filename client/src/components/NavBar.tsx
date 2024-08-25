@@ -11,12 +11,12 @@ function NavBar() {
           </h1>
         </Link>
       </div>
-      <div className="flex gap-5 text-lg font-bold">
-        <Link to="/">Shop</Link>
-        <Link to="/purchased-items">Purchases</Link>
-        <Link to="/checkout">
-          {<GiShoppingBag className="text-xl translate-y-[3px]" />}
+      <div className="flex gap-5 items-center text-lg font-bold">
+        <Link to="/" className="bg-customPink px-[10px] py-[1px] rounded">
+          Shop
         </Link>
+        <Link to="/purchased-items">Purchases</Link>
+        <Link to="/checkout">{<GiShoppingBag className="text-xl" />}</Link>
       </div>
     </nav>
   );
