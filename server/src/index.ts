@@ -1,8 +1,10 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 // load env variables
+dotenv.config();
 
 // initialize the app
 const app = express();
@@ -16,25 +18,8 @@ const userRouter = require("./routes/user");
 const { productRouter } = require("./routes/product");
 
 // connect to MongoDB
-
-app.use("/user", userRouter);
-app.use("/product", productRouter);
-
-// connect to COMPASS 🧭
-// "mongodb+srv://mark7elias:AXw7eWAPd@cluster0.39b8e.mongodb.net/ecommerce";
-// connect to ATLAS 🌎
-// "mongodb+srv://mark7elias:<db_password>@cluster0.39b8e.mongodb.net/ecommerce";
-// ❌ make sure to add name of database to end of URI
-// ecommerce
-// 🔐
-// AXw7eWAPd
-
-const uri =
-  "mongodb+srv://mark7elias:AXw7eWAPd@cluster0.39b8e.mongodb.net/ecommerce";
-
-//make connection to our mongoose database
 mongoose
-  .connect(uri)
+  .connect(process.env.MONGO_DB_URL)
   .then(() => {
     console.log("🌱 Connected to MongoDB");
   })
@@ -42,4 +27,10 @@ mongoose
     console.error("Error connecting to MongoDB:", error);
   });
 
-app.listen(3001, () => console.log("🦻 listening on port 3001"));
+// Routes
+app.use("/user", userRouter);
+app.use("/product", productRouter);
+
+// start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🦻 Listening... ${PORT}`));
