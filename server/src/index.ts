@@ -1,15 +1,24 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-//===============================
+
+// load env variables
+
+// initialize the app
 const app = express();
+
+// middleware
 app.use(express.json());
-// allows us to access our api from our React app
 app.use(cors());
-const home = require("./routes/home");
-app.use("/", home);
+
+// import routes
 const userRouter = require("./routes/user");
+const { productRouter } = require("./routes/product");
+
+// connect to MongoDB
+
 app.use("/user", userRouter);
+app.use("/product", productRouter);
 
 // connect to COMPASS 🧭
 // "mongodb+srv://mark7elias:AXw7eWAPd@cluster0.39b8e.mongodb.net/ecommerce";
